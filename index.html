@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>我的知识仓库</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <!-- 现代感主题样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+</head>
+<body>
+  <div id="app">加载中...</div>
+  <script>
+    window.$docsify = {
+      name: '💡 我的知识仓库',  // 侧边栏顶部标题
+      loadSidebar: true,        // 开启侧边栏菜单
+      subMaxLevel: 3,           // 侧边栏自动提取 Markdown 里的标题级别
+      auto2top: true,           // 切换页面时自动回到顶部
+      search: {                 // 开启强大的全文搜索功能
+        placeholder: '搜索笔记...',
+        noData: '没有找到相关内容',
+        depth: 3
+      }
+    }
+  </script>
+  <!-- Docsify 核心库与搜索插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+</body>
+</html>
