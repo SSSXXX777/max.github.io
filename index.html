@@ -2,28 +2,219 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>我的知识仓库</title>
+  <title>LABUBU 的奇妙知识小窝 🐾</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <!-- 现代感主题样式 -->
+  
+  <!-- Google Fonts 萌系圆润字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+  
+  <!-- Docsify 基础主题 -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  
+  <style>
+    /* --------------------------------------------------
+       💖 可爱 LABUBU 主题定制 CSS 
+       -------------------------------------------------- */
+    :root {
+      /* LABUBU 经典暖柔配色 */
+      --theme-color: #ff85a1;         /* 草莓甜粉 */
+      --theme-sec: #ffb3c6;           /* 蜜桃粉 */
+      --bg-main: #fff0f5;             /* 薰衣草浅粉背景 */
+      --bg-card: #ffffff;             /* 卡片纯白 */
+      --text-main: #5c3d46;           /* 温暖深褐棕 */
+      --sidebar-width: 290px;
+    }
+
+    /* 全局背景与字体 */
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: 'Nunito', 'ZCOOL KuaiLe', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      font-size: 16px;
+    }
+
+    /* 侧边栏定制 */
+    .sidebar {
+      background-color: #fff9fb !important;
+      border-right: 3px dashed #ffccd5 !important;
+      padding-top: 15px;
+    }
+
+    /* 侧边栏 LABUBU 顶部招牌卡片 */
+    .sidebar::before {
+      content: "";
+      display: block;
+      width: 140px;
+      height: 140px;
+      margin: 10px auto 15px auto;
+      background-image: url('https://img.icons8.com/?size=160&id=114036&format=png'); /* 萌系吉祥物贴图 */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: drop-shadow(0px 8px 12px rgba(255, 133, 161, 0.3));
+      animation: labubuFloat 3.5s ease-in-out infinite;
+    }
+
+    /* LABUBU 悬浮上下微动动画 */
+    @keyframes labubuFloat {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+
+    .sidebar h1 {
+      font-family: 'ZCOOL KuaiLe', cursive !important;
+      font-size: 1.5rem !important;
+      color: var(--theme-color) !important;
+      text-align: center;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 0px #ffe5ec;
+    }
+
+    .sidebar ul li a {
+      color: #7a525d !important;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 8px 15px !important;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .sidebar ul li a:hover {
+      background-color: #ffe5ec !important;
+      color: var(--theme-color) !important;
+      transform: translateX(5px);
+    }
+
+    .sidebar ul li.active > a {
+      background: linear-gradient(135deg, #ff85a1, #ffb3c6) !important;
+      color: #ffffff !important;
+      font-weight: bold;
+      box-shadow: 0 4px 10px rgba(255, 133, 161, 0.4);
+    }
+
+    /* 主内容区域面板 */
+    .content {
+      padding-top: 20px;
+    }
+
+    .markdown-section {
+      max-width: 850px !important;
+      background: var(--bg-card);
+      padding: 40px 45px !important;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(255, 182, 193, 0.25);
+      border: 2px solid #ffe5ec;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    /* 右上角贴图装饰：LABUBU 爪印标志 */
+    .markdown-section::after {
+      content: "🐾 LABUBU 'S VAULT";
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-family: 'ZCOOL KuaiLe', cursive;
+      font-size: 12px;
+      color: #ffb3c6;
+      background: #fff0f5;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* 标题样式 */
+    .markdown-section h1 {
+      font-family: 'ZCOOL KuaiLe', cursive !important;
+      color: var(--theme-color) !important;
+      border-bottom: 3px dashed #ffccd5;
+      padding-bottom: 12px;
+      font-size: 2.2rem;
+    }
+
+    .markdown-section h2 {
+      font-family: 'ZCOOL KuaiLe', cursive !important;
+      color: #ff6b8b !important;
+      border-left: 5px solid #ff85a1;
+      padding-left: 12px;
+    }
+
+    .markdown-section h3 {
+      color: #d85774 !important;
+    }
+
+    /* 引用块/提示框可爱卡片化 */
+    .markdown-section blockquote {
+      background-color: #fff5f7 !important;
+      border-left: 5px solid var(--theme-color) !important;
+      border-radius: 12px;
+      color: #6c4651 !important;
+      padding: 15px 20px !important;
+      margin: 20px 0 !important;
+      box-shadow: 0 2px 8px rgba(255, 133, 161, 0.1);
+    }
+
+    /* 表格样式 */
+    .markdown-section table {
+      border-collapse: separate !important;
+      border-spacing: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #ffccd5 !important;
+      margin: 20px 0;
+    }
+
+    .markdown-section th {
+      background-color: #ffe5ec !important;
+      color: var(--theme-color) !important;
+      font-weight: bold;
+      border: none !important;
+    }
+
+    .markdown-section td {
+      border-top: 1px solid #ffe5ec !important;
+      border-bottom: none !important;
+      border-left: none !important;
+      border-right: none !important;
+    }
+
+    /* 代码块圆角 */
+    .markdown-section pre {
+      border-radius: 16px !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    /* 全局滚动条美化 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ffb3c6;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fff0f5;
+    }
+  </style>
 </head>
 <body>
-  <div id="app">加载中...</div>
+  <div id="app">✨ LABUBU 正在为你搬运知识...</div>
   <script>
     window.$docsify = {
-      name: '💡 我的知识仓库',  // 侧边栏顶部标题
-      loadSidebar: true,        // 开启侧边栏菜单
-      subMaxLevel: 3,           // 侧边栏自动提取 Markdown 里的标题级别
-      auto2top: true,           // 切换页面时自动回到顶部
-      search: {                 // 开启强大的全文搜索功能
-        placeholder: '搜索笔记...',
-        noData: '没有找到相关内容',
+      name: '🧸 LABUBU 知识宝盒',
+      loadSidebar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      search: {
+        placeholder: '🔍 搜搜 LABUBU 的藏宝箱...',
+        noData: '😿 呀，LABUBU 没找到这个内容~',
         depth: 3
       }
     }
   </script>
-  <!-- Docsify 核心库与搜索插件 -->
+  <!-- Docsify 核心与常用扩展库 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/docsify.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
